@@ -1,5 +1,8 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const { electron } = require('process');
+
+
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -7,13 +10,36 @@ function createWindow() {
     height: 600,
     alwaysOnTop: true,
     autoHideMenuBar: true,
-    frame: false,
+    
+    
+    frame: true,
+    
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   });
-
+  
+  
+  win.setAlwaysOnTop(true),
+  win.setVisibleOnAllWorkspaces(true),
   win.loadFile('index.html');
+
+  win.on('minimize', (event) => {
+    event.preventDefault();
+    win.maximize()
+  });
+
+  win.on('close', (event) => {
+
+    event.preventDefault();
+  });
+   
+  ipcMain.on('message-from-renderer', (event, data) => {
+    console.log('Message received in main process:', data);
+    
+    event.reply('response-from-main', 'Response data from main process');
+  });
+
 }
 
 app.whenReady().then(createWindow);
