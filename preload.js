@@ -196,25 +196,35 @@ window.addEventListener('DOMContentLoaded', () => {
     distractionSaviourAi: true,
   }
 
+  const container = window.document.querySelector('.container')
+  const notesButton = window.document.querySelector('.add-notes');
+  const webview = window.document.querySelector('#foo')
+  notesButton.addEventListener('click', () => {
+    container.remove();
+    webview.style.display = 'block'
+  })
+
+  const cardsButton = window.document.querySelector('#add-card');
+  const webview2 = window.document.querySelector('#poo')
+  cardsButton.addEventListener('click', () => {
+    container.remove();
+    webview2.style.display = 'block'
+  })
 
   const renderWorkspace = () => {
     body.innerHTML = `
     <main class="application-container">
+    <button class="dark-button reload-button">Back</button>
+
   <h1 class="application-title">Workspace options</h1>
 
   <div class="source-options">
     <div class="source-option youtube pointer selected">youtube</div>
-    /
-    <div class="source-option website pointer">website</div>
-    /
-    <div class="source-option localmedia pointer ">local media</div>
   </div>
 
   <div class="source-container">
     <!-- by Default it is youtube -->
-    ${state.selectedOption === 'youtube' ? '<input type="text" name="url" id="youtube-url" placeholder="https://youtube.com" />' : ''}
-    ${state.selectedOption === 'website' ? '<input type="text" name="url" id="website-url" placeholder="https://example.com" />' : ''}
-    ${state.selectedOption === 'localmedia' ? '<input type="file" id="video-selector" name="video" accept="video/*" />' : ''}
+   <input type="text" name="url" id="youtube-url" placeholder="https://youtube.com" /> 
   </div>
 
   <!-- Focus duration selector -->
@@ -246,6 +256,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const sourceContainer = window.document.querySelector('.source-container')
     const startSession = window.document.querySelector('.start-session')
+    const reloadButton = window.document.querySelector('.reload-button')
+
+    reloadButton.addEventListener('click', () => window.location.reload())
 
     window.document.querySelectorAll('.source-option').forEach(source => source.addEventListener('click', () => {
       if (source.classList.contains('youtube')) {

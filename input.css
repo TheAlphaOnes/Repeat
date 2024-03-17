@@ -106,15 +106,28 @@ input[type="time"]:focus {
   display: flex;
   gap: 1.5rem;
 }
-.home-container section-1 {
-  width: 70%;
+ .section-1 {
+  max-width: 680px;
   display: flex;
   gap: 1rem;
   flex-direction: column;
 }
-.home-container section-2 {
-  width: 30%;
-  display: flex;
+.dark-button {
+  background-color: #141414;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dark-button:hover {
+  background-color: #555;
+}
+.section-2 {
+max-width: 300px;  display: flex;
   flex-direction: column;
 }
 .graph-container {
@@ -214,8 +227,6 @@ input[type="time"]:focus {
   justify-content: space-between;
   align-items: center;
 }
-
-
 .the-note-box{
   margin-top: 0.5rem;
   display: flex;

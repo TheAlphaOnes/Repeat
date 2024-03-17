@@ -6,8 +6,41 @@
 
     <link rel="stylesheet" href="input.css" />
   </head>
+  <style>
+    #foo {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 9999; /* Adjust the z-index as needed */
+    }
+    #poo {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      z-index: 9999; /* Adjust the z-index as needed */
+    }
+  </style>
 
   <body>
+    <!-- <webview
+      id="foo"
+      src="https://reepeat-create-notes.netlify.app/"
+      style="width: 400px; height: 480px"
+    >
+      <div class="indicator"></div>
+    </webview> -->
+    <iframe id="foo" src="https://reepeat-create-notes.netlify.app"></iframe>
+    
+    <iframe id="poo" src="https://repeat-flash.vercel.app/"></iframe>
+
     <main class="container">
       <div class="home-title">
         <div>Enter</div>
@@ -33,8 +66,9 @@
           <div class="notes-container">
             <div class="notes-header">
               <div style="font-size: 1rem; font-weight: 500">notes</div>
-              <div class="add-notes">
+              <div class="add-notes" style="cursor: pointer">
                 <svg
+                style="cursor: pointer;"
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"
                   height="32"
@@ -56,6 +90,18 @@
           <div class="card-container">
             <div class="container-header">
               <h1>Cards</h1>
+              <svg style="cursor: pointer;"
+                id="add-card"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                fill="#f5f5f5"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"
+                ></path>
+              </svg>
             </div>
 
             <div class="the-ultimate-note-box"></div>
@@ -64,4 +110,23 @@
       </div>
     </main>
   </body>
+  <script type="text/javascript">
+    // Event handlers for loading events.
+    // Use these to handle loading screens, transitions, etc
+    onload = () => {
+      const webview = document.getElementById("foo");
+      const indicator = document.querySelector(".indicator");
+
+      const loadstart = () => {
+        indicator.innerText = "loading...";
+      };
+
+      const loadstop = () => {
+        indicator.innerText = "";
+      };
+
+      webview.addEventListener("did-start-loading", loadstart);
+      webview.addEventListener("did-stop-loading", loadstop);
+    };
+  </script>
 </html>
