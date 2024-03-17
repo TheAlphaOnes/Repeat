@@ -1,0 +1,16 @@
+{
+  "name": "repeat",
+  "version": "1.0.0",
+  "description": "zen workspace for you to study and work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.1.4",
+    "tailwindcss": "^3.4.1"
+  }
+}
